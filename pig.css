@@ -1,0 +1,50 @@
+body{
+    
+    text-align: center;
+    font-family: serif;
+    margin: 100px;
+    padding: 10px;
+}
+
+
+.active { background-color: #f0f0f0; }
+.active .player-name { font-weight: 300; }
+
+.player-0-pannel{
+    width: 50%;
+    float: left;
+}
+.player-1-pannel{
+    width: 50%;
+    float: right;
+    
+}
+.player-name-0,.player-name-1{
+    font-size: 40px;
+}
+.player-totalscore,.current-score,.cscore,.tscore{
+    padding: 20px;
+    font-size: 25px;
+}
+.current{
+    background-color: brown;
+    text-align: center;
+    padding: 10px;
+    margin: 80px;    
+}
+img{
+    width: 10%;
+    height: 20%;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 560px;
+    position:absolute;
+    
+}
+.btn-new,.btn-roll,.btn-hold{
+    font-size: 20px;
+    height: 25%;
+    display: inline-block;
+    
+}
+
