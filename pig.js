@@ -5,7 +5,7 @@ initialization();
 if(gameStatus){
  var dice = Math.floor(Math.random()*6) + 1;
 document.querySelector(".dice").style.display = "block";  
-document.querySelector(".dice").src = "dice-" + dice +  ".PNG";   
+document.querySelector(".dice").src = "dice-" + dice +  ".png";   
 if(dice !== 1){
     roundScore = roundScore + dice;
     document.querySelector("#score-"+ activeplayer).textContent = roundScore; 
