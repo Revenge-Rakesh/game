@@ -1,5 +1,166 @@
-<html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     
-    <title>first page web hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Small game</title>
+    </head>
+    <style>
+        body{
     
-    </html>
+    text-align: center;
+    font-family: serif;
+    margin: 100px;
+    padding: 10px;
+}
+
+
+.active { background-color: #f0f0f0; }
+.active .player-name { font-weight: 300; }
+
+.player-0-pannel{
+    width: 50%;
+    float: left;
+}
+.player-1-pannel{
+    width: 50%;
+    float: right;
+    
+}
+.player-name-0,.player-name-1{
+    font-size: 40px;
+}
+.player-totalscore,.current-score,.cscore,.tscore{
+    padding: 20px;
+    font-size: 25px;
+}
+.current{
+    background-color: brown;
+    text-align: center;
+    padding: 10px;
+    margin: 80px;    
+}
+img{
+    width: 10%;
+    height: 20%;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 560px;
+    position:absolute;
+    
+}
+.btn-new,.btn-roll,.btn-hold{
+    font-size: 20px;
+    height: 25%;
+    display: inline-block;
+    
+}     
+    </style>
+    <body>
+        <button class="btn-new"><i class="fa fa-newgame">New Game</i></button>
+        <div class="content">
+            <div class="player-0-pannel active">
+             <div class="player-name-0" >Player 1 </div>
+             <div class="player-totalscore">Total score</div>
+             <div class="tscore" id="rscore-0">10</div>
+             <div class="current">
+             <div class="current-score">Current score</div>
+             <div class="cscore" id="score-0">11</div>
+             </div>
+         </div>
+            <div class="player-1-pannel">
+             <div class="player-name-1" >Player 2</div>
+             <div class="player-totalscore">Total score</div>
+             <div class="tscore" id="rscore-1">100</div>
+             <div class="current">
+             <div class="current-score">Current score</div>
+             <div class="cscore" id="score-1">111</div>
+             </div>
+         </div>
+       </div>
+        <img src="C:\Users\Rakesh\Downloads\website\js\4-DOM-Pig-Game\dice-4.png" alt="Dice" class="dice" style="border: 2px solid black">
+        <button class="btn-roll"><i class="fa fa-roll">Roll Dice</i></button>
+        <button class="btn-hold"><i class="fa fa-hold">Hold</i></button>
+      
+   
+    <script>
+        var scores, activeplayer, roundScore, gameStatus;
+
+initialization();
+ document.querySelector(".btn-roll").addEventListener("click",function(){ 
+if(gameStatus){
+ var dice = Math.floor(Math.random()*6) + 1;
+document.querySelector(".dice").style.display = "block";  
+document.querySelector(".dice").src = "C:/Users/Rakesh/Downloads/website/js/4-DOM-Pig-Game/dice-" + dice +  ".png";   
+if(dice !== 1){
+    roundScore = roundScore + dice;
+    document.querySelector("#score-"+ activeplayer).textContent = roundScore; 
+}else{
+    if(activeplayer === 0){
+        activeplayer = 1;
+    }else{
+       activeplayer = 0;}
+       roundScore = 0;
+     document.getElementById("score-0").textContent = 0;
+    document.getElementById("score-1").textContent = 0;
+    document.querySelector(".player-0-pannel").classList.toggle("active");  //indicate the player turn in user interface
+     document.querySelector(".player-1-pannel").classList.toggle("active");  
+}
+}
+});
+
+
+//functioning of hold button
+
+document.querySelector(".btn-hold").addEventListener("click",function(){
+    
+if(gameStatus){
+     scores[activeplayer] = scores[activeplayer] + roundScore;
+     document.querySelector("#rscore-" + activeplayer).textContent = scores[activeplayer];
+     if(scores[activeplayer] >= 20){ //winning condition
+      document.querySelector(".player-name-" + activeplayer).textContent = "Winner!";
+        document.querySelector(".dice").style.display = "none";
+        document.querySelector(".player-" +activeplayer + "-pannel").classList.add("Winner!");
+     document.querySelector(".player-" + activeplayer + "-pannel").classList.remove("active");
+         gameStatus = false;
+     }
+    else{
+       activeplayer = 0;
+       roundScore = 0;
+    document.getElementById("score-0").textContent = 0;
+  document.getElementById("score-1").textContent = 0;
+ document.querySelector(".player-1-pannel").classList.toggle("active");  //indicate the player turn in user interface
+   document.querySelector(".player-0-pannel").classList.toggle("active");
+document.querySelector(".dice").style.display = "none";
+}  
+    }
+});
+
+
+//functionality of new button
+
+document.querySelector(".btn-new").addEventListener("click",initialization)
+    
+function initialization(){     
+    
+    scores = [0,0];
+    roundScore = 0;
+    activeplayer = 0;
+    gameStatus = true;
+ document.querySelector(".dice").style.display = "none"
+document.getElementById("rscore-0").textContent = 0;
+document.getElementById("rscore-1").textContent = 0;
+document.getElementById("score-0").textContent = 0;
+document.getElementById("score-1").textContent = 0;
+  document.querySelector(".player-name-0").textContent = "Player 1";
+ document.querySelector(".player-name-1").textContent = "Player 2";
+  document.querySelector(".player-0-pannel").classList.add("active")//indicate the player turn in user interface
+  document.querySelector(".player-1-pannel").classList.remove("active");
+};
+    
+    </script>
+         </body>
+</html>
+
